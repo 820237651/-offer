@@ -1,0 +1,34 @@
+import java.util.*;
+/*
+public class ListNode {
+    int val;
+    ListNode next = null;
+
+    ListNode(int val) {
+        this.val = val;
+    }
+}*/
+public class Solution {
+    public ListNode FindFirstCommonNode(ListNode pHead1, ListNode pHead2) {
+            ListNode l1=pHead1;
+            ListNode l2=pHead2;
+
+            while(l1!=l2){
+                if(l1==null){
+                    l1=pHead2;
+                }
+                else{
+                    l1=l1.next;
+                }
+
+                if(l2==null){
+                    l2=pHead1;
+                }
+                else{
+                    l2=l2.next;
+                }
+            }
+
+            return l1;//在这个特定的问题中，循环退出的条件是 l1 == l2，所以当 l1 和 l2 都为 null 时，循环会退出，但这并不是因为它们的地址相等，而是因为它们都变为了 null，满足了循环条件。
+    }
+}
