@@ -1,0 +1,50 @@
+import java.util.*;
+
+/*
+ * public class ListNode {
+ *   int val;
+ *   ListNode next = null;
+ *   public ListNode(int val) {
+ *     this.val = val;
+ *   }
+ * }
+ */
+
+public class Solution {
+    /**
+     * 代码中的类名、方法名、参数名已经指定，请勿修改，直接返回方法规定的值即可
+     *
+     * 
+     * @param pHead ListNode类 
+     * @param k int整型 
+     * @return ListNode类
+     */
+    public ListNode FindKthToTail (ListNode pHead, int k) {
+        // write code here
+        if(pHead==null){
+            return pHead;
+        }
+        Stack<ListNode>stack1=new Stack<ListNode>();
+        while(pHead!=null){
+            stack1.push(pHead);
+            pHead=pHead.next;
+        }
+
+        Stack<ListNode>stack2=new Stack<ListNode>();
+        if(k<=stack1.size()&&k!=0){
+        for(int i=0;i<k;i++){
+            stack2.push(stack1.pop());
+        }
+        ListNode hh=stack2.pop();
+        ListNode hn=hh;
+        while(!stack2.isEmpty()){
+                hn.next=stack2.pop();
+                hn=hn.next;
+        }
+        return hh;
+        }
+        else{
+            return null;
+        }
+    }
+}
