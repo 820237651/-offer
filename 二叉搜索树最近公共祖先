@@ -22,8 +22,8 @@ public class Solution {
      * @return int整型
      */
 
-    public ArrayList<Integer> path(TreeNode root,int target){
-        TreeNode node=root;
+    public ArrayList<Integer> path(TreeNode root,int target){//先获得每个节点从根到该节点的路径，若当前的treenode小于目标，那么应该往当前treenode的右子树遍历，若当前treenode比目标大，那么应该遍历当前treenode的左子树
+        TreeNode node=root;//获取路径存储到ArrayList集合中
         ArrayList<Integer>list=new ArrayList<Integer>();
         while(node.val!=target){
             list.add(node.val);
@@ -40,7 +40,7 @@ public class Solution {
 
 
 
-    public int lowestCommonAncestor (TreeNode root, int p, int q) {
+    public int lowestCommonAncestor (TreeNode root, int p, int q) {//遍历获取到的路径（也就是ArrayList数组）从头开始挨个遍历比较，直到最后有不相等的节点说明已经没有公共祖先了，停止循环遍历
         // write code here
 
     ArrayList<Integer> p_path=path(root,p);
