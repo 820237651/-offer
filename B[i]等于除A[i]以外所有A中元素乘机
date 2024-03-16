@@ -1,0 +1,28 @@
+数组 B[i] = A[0]*A[1]...A[i-1]*A[i+1]...A[n-1]，即除去 A[i] 的所有值相乘
+可以将 A[i] 设为1，再用 for 循环将 A 中所有值相乘
+临时变量 temp 先存储 A[i] 的值，然后再赋回来。
+
+
+import java.util.*;
+public class Solution {
+    /**
+     * 代码中的类名、方法名、参数名已经指定，请勿修改，直接返回方法规定的值即可
+     * @param A int整型一维数组 
+     * @return int整型一维数组
+     */
+    public int[] multiply (int[] A) {
+        // write code here
+        int[] B=new int[A.length];
+        for(int i=0;i<A.length;i++){
+            int temp=A[i];
+            A[i]=1;
+            B[i]=1;
+            for(int j=0;j<A.length;j++){
+                B[i]*=A[j];
+            }
+            A[i]=temp;
+            
+        }
+        return B;
+    }
+}
