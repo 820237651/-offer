@@ -1,0 +1,51 @@
+方法一：用另一个数组记录
+import java.util.*;
+public class Solution {
+    /**
+     * 代码中的类名、方法名、参数名已经指定，请勿修改，直接返回方法规定的值即可
+     * @param numbers int整型一维数组 
+     * @return int整型
+     */
+    public int duplicate (int[] numbers) {
+        // write code here
+        int[] count=new int[100000];
+        int result=-1;
+        for(int i=0;i<numbers.length;i++){
+                count[numbers[i]]++;
+        }
+        for(int i=0;i<count.length;i++){
+            if(count[i]>=2){
+               result=i;
+            }
+        }
+        return result;
+    }
+}
+
+方法二：利用HashMap，存放键值对，判断是否之前已经存放过这个键，如果没有就把这个键存到HashMap里，否则，直接返回重复的键
+import java.util.*;
+
+
+public class Solution {
+    /**
+     * 代码中的类名、方法名、参数名已经指定，请勿修改，直接返回方法规定的值即可
+     * @param numbers int整型一维数组 
+     * @return int整型
+     */
+    public int duplicate (int[] numbers) {
+        // write code here
+        HashMap<Integer,Integer> mp=new HashMap<>();
+
+        for(int i=0;i<numbers.length;i++){
+            if(!mp.containsKey(numbers[i])){
+                mp.put(numbers[i],1);
+            }
+            else{
+                return numbers[i];
+            }
+        }
+
+        return -1;
+       
+ }
+}
