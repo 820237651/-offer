@@ -1,0 +1,71 @@
+方法一：使用首尾双指针，在不考虑相对位置发生改变的情况下可以
+import java.util.*;
+public class Solution {
+    /**
+     * 代码中的类名、方法名、参数名已经指定，请勿修改，直接返回方法规定的值即可
+     * @param array int整型一维数组 
+     * @return int整型一维数组
+     */
+    public int[] reOrderArrayTwo (int[] array) {
+        // write code here
+        int[] result=new int[array.length];
+
+        int start=0;
+        int end=result.length-1;
+        
+        for(int i=0;i<array.length;i++){
+            if(array[i]%2==0){
+                result[end]=array[i];
+                end=end-1;
+            }
+            if(array[i]%2==1){
+                result[start]=array[i];
+                start++;
+            }
+        }
+
+        return result;
+    }
+}
+
+方法二：要保障相对位置不发生改变的情况下，先判断有多少个奇数，这样就确定了偶数应该从哪里开始加入，然后顺序遍历原数组，双指针分别加入，这样就保障了原相对位置不变。
+import java.util.*;
+
+
+public class Solution {
+    /**
+     * 代码中的类名、方法名、参数名已经指定，请勿修改，直接返回方法规定的值即可
+     *
+     * 
+     * @param array int整型一维数组 
+     * @return int整型一维数组
+     */
+    public int[] reOrderArrayTwo (int[] array) {
+        // write code here
+        int[] result=new int[array.length];
+
+        int oustart=0;
+        for(int i=0;i<array.length;i++){
+            if(array[i]%2==1){
+                oustart++;//有多少个奇数，就确定了偶数应该从第几个索引位置加入
+            }
+        }
+
+        int x=0;
+        int y=oustart;
+
+        for(int i=0;i<array.length;i++){
+            if(array[i]%2==1){
+                result[x]=array[i];
+                x++;
+            }
+            else{
+                result[y]=array[i];
+                y++;
+            }
+        }
+
+        return result;
+
+}
+}
