@@ -1,0 +1,39 @@
+import java.util.*;
+
+
+public class Solution {
+    /**
+     * 代码中的类名、方法名、参数名已经指定，请勿修改，直接返回方法规定的值即可
+     *
+     * 
+     * @param str string字符串 
+     * @return int整型
+     */
+    public int FirstNotRepeatingChar (String str) {
+        // write code here
+        HashMap<Character,Integer> mp=new HashMap<>();
+
+        for(int i=0;i<str.length();i++){
+            char ch=str.charAt(i);
+
+            if(!mp.containsKey(ch)){
+                mp.put(ch,1);
+            }
+            else{
+                mp.put(ch,mp.get(ch)+1);
+            }
+        }
+
+        for(int i=0;i<str.length();i++){
+            char ch=str.charAt(i);
+            if(mp.get(ch)==1){
+                return i;
+            }
+        }
+
+        return -1;
+
+    }
+}
+//在put的时候，我们的确是按照顺序进行put键，但是在取键的时候，我们的顺序是不是不一定和put的时候顺序一样呢？那么这种做法是不是取出来的并不一定是第一个出现一次的字符呢？只是其中一个出现一次的字符？
+//它储存的时候可能会改变顺序，所以我们找的时候是按顺序找的，你可以看到第18行，是按str的顺序找hashmap，所以取出来的还是第一个
