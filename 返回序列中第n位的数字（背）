@@ -1,0 +1,29 @@
+数字以 0123456789101112131415... 的格式作为一个字符序列，在这个序列中第 2 位（从下标 0 开始计算）是 2 ，第 10 位是 1 ，第 13 位是 1 ，以此类题，请你输出第 n 位对应的数字。
+import java.util.*;
+
+
+public class Solution {
+    /**
+     * 代码中的类名、方法名、参数名已经指定，请勿修改，直接返回方法规定的值即可
+     * @param n int整型 
+     * @return int整型
+     */
+    public int findNthDigit (int n) {
+        // write code here
+        int digit=1;
+        long start=1;
+        long sum=9;
+
+        while(n>sum){
+            n-=sum;
+            start*=10;
+            digit++;
+            sum=9*start*digit;
+        }
+
+        String num=""+(start+(n-1)/digit);
+        int index=(n-1)%digit;
+
+        return (int)(num.charAt(index))-(int)('0');
+    }
+}
