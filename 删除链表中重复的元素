@@ -1,0 +1,82 @@
+方法一：使用HashMap
+import java.util.*;
+/*
+ public class ListNode {
+    int val;
+    ListNode next = null;
+
+    ListNode(int val) {
+        this.val = val;
+    }
+}
+*/
+public class Solution {
+    public ListNode deleteDuplication(ListNode pHead) {
+            HashMap<Integer,Integer>mp=new HashMap<>();
+            ListNode hn=pHead;
+            while(hn!=null){
+                if(!mp.containsKey(hn.val)){
+                    mp.put(hn.val,1);
+                    hn=hn.next;
+                }
+                else{
+                    mp.put(hn.val,mp.get(hn.val)+1);
+                    hn=hn.next;
+                }
+            }
+
+            ListNode hh=new ListNode(-1);
+            hh.next=pHead;
+            hn=hh;
+            while(hn.next!=null){
+                if(mp.get(hn.next.val)>=2){
+                    hn.next=hn.next.next;
+                }
+                else{
+                    hn=hn.next;
+                }
+            }
+
+            return hh.next;
+    }
+}
+
+
+方法二：一次遍历
+import java.util.*;
+/*
+ public class ListNode {
+    int val;
+    ListNode next = null;
+
+    ListNode(int val) {
+        this.val = val;
+    }
+}
+*/
+public class Solution {
+    public ListNode deleteDuplication(ListNode pHead) {
+        if(pHead==null){
+            return pHead;
+        }
+            ListNode hh=new ListNode(-1);
+            hh.next=pHead;
+            ListNode hn=hh;
+
+            while(hn.next!=null&&hn.next.next!=null){
+                if(hn.next.val==hn.next.next.val){
+                    int x=hn.next.val;
+                    while(hn.next!=null&&hn.next.val==x){
+                        hn.next=hn.next.next;
+                    }
+                }
+                    else{
+                        hn=hn.next;
+                    }
+                }
+
+
+            return hh.next;
+    }
+}
+
