@@ -1,0 +1,65 @@
+import java.util.*;//递归深度优先遍历dfs
+
+/*
+ * public class TreeNode {
+ *   int val = 0;
+ *   TreeNode left = null;
+ *   TreeNode right = null;
+ *   public TreeNode(int val) {
+ *     this.val = val;
+ *   }
+ * }
+ */
+
+public class Solution {
+    /**
+     * 代码中的类名、方法名、参数名已经指定，请勿修改，直接返回方法规定的值即可
+     *
+     * 
+     * @param root TreeNode类 
+     * @param o1 int整型 
+     * @param o2 int整型 
+     * @return int整型
+     */    
+     
+     boolean flag=false;
+        public void dfs(TreeNode root,ArrayList<Integer> path,int o){
+            if(flag||root==null){
+                return;
+            }
+        
+        path.add(root.val);
+        if(root.val==o){
+            flag=true;
+            return;
+        }
+
+        dfs(root.left,path,o);
+        dfs(root.right,path,o);
+
+        if(flag){//如果找到
+            return;
+        }
+
+        path.remove(path.size()-1);
+
+        }
+
+    public int lowestCommonAncestor (TreeNode root, int o1, int o2) {
+        // write code here
+            ArrayList<Integer> path1=new ArrayList<>();
+            ArrayList<Integer> path2=new ArrayList<>();
+
+            dfs(root,path1,o1);
+            flag=false;
+            dfs(root,path2,o2);
+            int result=0;
+            for(int i=0;i<path1.size()&&i<path2.size();i++){
+                if(path1.get(i).equals(path2.get(i)))
+                {
+                    result=path1.get(i);
+                }
+            }
+            return result;
+        }
+    }
